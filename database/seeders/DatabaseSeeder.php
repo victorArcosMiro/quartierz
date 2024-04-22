@@ -15,9 +15,19 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+
+
+          // Orden óptimo para crear las tablas
+
+          $this->call(MaterialSeeder::class);  // 1. Material (no depende de otras tablas)
+          $this->call(UsuarioSeeder::class);    // 2. Cliente (no depende de otras tablas)
+
+          $this->call(DesignSeeder::class);     // 3. Diseño (no depende de otras tablas)
+          $this->call(CustomSeeder::class);      // 4. Custom (no depende de otras tablas)
+
+          $this->call(PedidoSeeder::class);     // 5. Pedido (depende de Cliente, Material, Diseño y Custom)
+
+          $this->call(PedidosTelefonoSeeder::class);    // 6. Factura (depende de Cliente y Pedido)
+
     }
 }

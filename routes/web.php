@@ -4,8 +4,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DesignController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\CalendarioController;
+
+
 
 Route::get('/', function () {
     return view('index');
@@ -24,7 +26,11 @@ Route::get('/galeria-filtrado-b', [DesignController::class, 'showProductsFiltrad
 
 Route::get('/custom', [DesignController::class, 'showCustom'])->name('custom.show');
 
-Route::get('/sobreNosotros-show', [DesignController::class, 'showSobreNosotros'])->name('sobreNosotros-show');
+
+
+Route::get('/sobreNosotros', function () {
+    return view('sobreNosotros');
+})->name('sobreNosotros');
 
 Route::get('/custom', function () {
     return view('custom');
@@ -34,7 +40,7 @@ Route::get('/custom', function () {
 
 Route::get('/agregar-al-carrito', [CarritoController::class, 'agregarProducto'])->name('carrito.agregar');
 
-Route::get('/ver-carrito', [CarritoController::class, 'verCarrito'])->name('ver-carrito');
+
 
 Route::get('/carrito', [CarritoController::class, 'mostrarCarrito'])->name('carrito.mostrar');
 
@@ -49,6 +55,11 @@ Route::delete('/eliminar-cantidad', [CarritoController::class, 'eliminarFilaCarr
 
 // Ruta para vaciar completamente el carrito
 Route::post('/vaciar-carrito', [CarritoController::class, 'vaciarCarrito'])->name('vaciar-Carrito');
+
+Route::post('/finalizarReserva', [CarritoController::class, 'finalizarReserva'])->name('finalizarReserva');
+
+
+
 /* - RUTAS CARRITO -  - RUTAS CARRITO -  - RUTAS CARRITO -  - RUTAS CARRITO -  - RUTAS CARRITO -  - RUTAS CARRITO - */
 
 
@@ -82,3 +93,13 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 /* - RUTAS BREEZE -  - RUTAS BREEZE -  - RUTAS BREEZE -  - RUTAS BREEZE -  - RUTAS BREEZE -  - RUTAS BREEZE -  - RUTAS BREEZE - */
+
+
+
+/* - RUTAS CALENDARIO -  - RUTAS CALENDARIO -  - RUTAS CALENDARIO -  - RUTAS CALENDARIO -  - RUTAS CALENDARIO - */
+
+
+Route::get('/calendar', [CalendarioController::class, 'showCurrentMonth'])->name('calendar');
+
+
+/* - RUTAS CALENDARIO -  - RUTAS CALENDARIO -  - RUTAS CALENDARIO -  - RUTAS CALENDARIO -  - RUTAS CALENDARIO - */

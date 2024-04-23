@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Master</title>
+    <title>Quartierz</title>
     @vite('resources/css/app.css')
     <style>
         html{
@@ -18,14 +18,14 @@
 
 </head>
 
-
-
-<body class="bg-black text-white antialiased">
+@include('/includes/nav')
+<!---->
+<body class="bg-gradient-to-r from-violet-600 to-indigo-600 text-white antialiased">
     <div class="max-w-screen-lg mx-auto">
-        @include('/includes/nav')
+
         <main class="mt-20">
 
-            <div class="bg-neutral-800 bg-opacity-80 h-auto rounded-lg py-6 sm:py-8 lg:py-12">
+            <div class=" bg-opacity-80 h-auto rounded-lg py-6 sm:py-8 lg:py-12">
 
         @yield('main')
             </div>

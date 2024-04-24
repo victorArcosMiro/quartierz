@@ -1,7 +1,16 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
+    <?php
+    if(isset($logueado)){
 
+        ?>
+<div class="text-white bg-red-500 border-solid border-2 border-white rounded-lg text-lg py-2 px-3 text-center">!Debes iniciar sesión para reservar una cita!</div>
+<div class="text-black underline mt-2 mb-2"><a href="{{ route('register') }}">No estoy registrado todavia</a></div>
+        <?php
+
+    }
+    ?>
     <form method="POST" action="{{ route('login') }}">
         @csrf
 

@@ -23,9 +23,9 @@
 <body class="bg-gradient-to-r from-violet-600 to-indigo-600 text-white antialiased">
     <div class="max-w-screen-lg mx-auto">
 
-        <main class="mt-20">
+        <main class="mt-5">
 
-            <div class=" bg-opacity-80 h-auto rounded-lg py-6 sm:py-8 lg:py-12">
+            <div class="bg-opacity-80 h-auto rounded-lg py-6 sm:py-8 lg:py-12">
 
         @yield('main')
             </div>
@@ -34,6 +34,7 @@
 
         @include('/includes/footer')
     </div>
+
 
 </body>
 

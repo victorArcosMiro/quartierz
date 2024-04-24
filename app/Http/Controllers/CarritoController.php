@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Design;
 
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 
 class CarritoController extends Controller
@@ -25,51 +27,51 @@ class CarritoController extends Controller
     }
 
     public function mostrarCarrito()
-{
-    // Llamar a la función mostrarDatos() y asignar su resultado a una variable
-    $datosCarrito = $this->mostrarDatos();
+    {
+        // Llamar a la función mostrarDatos() y asignar su resultado a una variable
+        $datosCarrito = $this->mostrarDatos();
 
-    // Pasar la información a la vista del carrito junto con el precio total del carrito
-    return view('carrito', $datosCarrito);
-}
-
-public function mostrarDatos(){
-    // Obtener el carrito de la sesión
-    $carrito = session()->get('carrito', []);
-
-    // Inicializar un array para almacenar la información de los productos en el carrito
-    $productosCarrito = [];
-
-    // Inicializar el precio total del carrito
-    $precioTotalCarrito = 0;
-
-    // Recorrer cada elemento del carrito
-    foreach ($carrito as $productoId => $cantidad) {
-        // Obtener el producto de la tabla Design utilizando su ID
-        $producto = Design::findOrFail($productoId);
-
-        // Calcular el precio total del producto (precio por cantidad)
-        $precioTotalProducto = $producto->precio * $cantidad;
-
-        // Agregar la información del producto al array de productos del carrito
-        $productosCarrito[] = [
-            'id'              => $producto->id,
-            'nombre'          => $producto->nombre,
-            'nombre_material' => $producto->nombre_material,
-            'imagen'          => $producto->imagen_design,
-            'precio'          => $producto->precio,
-            'cantidad'        => $cantidad,
-            'precioTotal'     => $precioTotalProducto,
-        ];
-
-        // Sumar el precio total del producto al precio total del carrito
-        $precioTotalCarrito += $precioTotalProducto;
+        // Pasar la información a la vista del carrito junto con el precio total del carrito
+        return view('carrito', $datosCarrito);
     }
 
-    // Devolver un array asociativo con los datos del carrito
-    return compact('productosCarrito', 'precioTotalCarrito');
-}
+    public function mostrarDatos()
+    {
+        // Obtener el carrito de la sesión
+        $carrito = session()->get('carrito', []);
 
+        // Inicializar un array para almacenar la información de los productos en el carrito
+        $productosCarrito = [];
+
+        // Inicializar el precio total del carrito
+        $precioTotalCarrito = 0;
+
+        // Recorrer cada elemento del carrito
+        foreach ($carrito as $productoId => $cantidad) {
+            // Obtener el producto de la tabla Design utilizando su ID
+            $producto = Design::findOrFail($productoId);
+
+            // Calcular el precio total del producto (precio por cantidad)
+            $precioTotalProducto = $producto->precio * $cantidad;
+
+            // Agregar la información del producto al array de productos del carrito
+            $productosCarrito[] = [
+                'id'              => $producto->id,
+                'nombre'          => $producto->nombre,
+                'nombre_material' => $producto->nombre_material,
+                'imagen'          => $producto->imagen_design,
+                'precio'          => $producto->precio,
+                'cantidad'        => $cantidad,
+                'precioTotal'     => $precioTotalProducto,
+            ];
+
+            // Sumar el precio total del producto al precio total del carrito
+            $precioTotalCarrito += $precioTotalProducto;
+        }
+
+        // Devolver un array asociativo con los datos del carrito
+        return compact('productosCarrito', 'precioTotalCarrito');
+    }
 
     public function aumentarCantidad(Request $request)
     {
@@ -138,23 +140,29 @@ public function mostrarDatos(){
 
     public function finalizarReserva(Request $request)
     {
-        $datosCarrito = $this->mostrarDatos();
+        if (Auth::check()) {
 
-        $fecha = $request->input('hora');
-        $hora  = $request->input('fecha');
-        // Obtener el carrito de la sesión
+            $datosCarrito = $this->mostrarDatos();
 
+            $fecha = $request->input('hora');
+            $hora  = $request->input('fecha');
+            // Obtener el carrito de la sesión
 
-        // Inicializar una variable para almacenar los datos de la cita
-        $datosCita = [];
+            // Inicializar una variable para almacenar los datos de la cita
+            $datosCita = [];
 
-        // Agregar los datos del formulario al array de datos de la cita
-        $datosCita['fecha'] = $fecha;
-        $datosCita['hora']  = $hora;
+            // Agregar los datos del formulario al array de datos de la cita
+            $datosCita['fecha'] = $fecha;
+            $datosCita['hora']  = $hora;
 
-        // Inicializar un array para almacenar la información de los productos en arrito junto con el precio total del carrito
+            // Inicializar un array para almacenar la información de los productos en arrito junto con el precio total del carrito
 
-        return view('finalizarReserva', compact('datosCarrito', 'datosCita'));
+            return view('finalizarReserva', compact('datosCarrito', 'datosCita'));
+
+        }else{
+            $logueado=1;
+            return view('auth.login', compact('logueado'));
+        }
+
     }
-
 }

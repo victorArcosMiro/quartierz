@@ -1,8 +1,8 @@
 <header
-    class="sticky top-0 z-50 backdrop-blur  py-5 bg-white/50  flex justify-center items-center w-screen mx-auto px-4">
-<div class="flex flex-row max-w-screen-lg mx-auto">
-    <a href="{{ route('inicio-show') }}"><img class="w-96" src="../images/logo-negro.png" alt="Logo"></a>
-    <nav class="space-x-4 text-base flex flex-row justify-center items-center">
+    class="sticky top-0 z-50 backdrop-blur py-5 bg-white/50 w-screen mx-auto">
+<div class="flex flex-row max-w-screen-lg mx-auto justify-around pr-5">
+    <a class="mr-auto" href="{{ route('inicio-show') }}"><img class="w-80" src="../images/logo-negro.png" alt="Logo"></a>
+    <nav class="space-x-4 text-base flex flex-row justify-center items-center ml-auto">
         <a href="{{ route('inicio-show') }}" class="text-xl text-black">Inicio</a>
 
         <a href="{{ route('galeria-show') }}" class="text-xl text-black">Galería</a>

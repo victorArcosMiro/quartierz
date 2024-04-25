@@ -7,18 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quartierz</title>
     @vite('resources/css/app.css')
-    <style>
-        html{
-            scroll-behavior: smooth
-        }
-    </style>
+
 
     <!--Link a iconos gratis gracias a https://fontawesome.com/ -->
 
+   <!-- Fonts -->
+   <link rel="preconnect" href="https://fonts.bunny.net">
+   <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+   <!-- Scripts -->
+   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-@include('/includes/nav')
+@include('layouts.navigation')
 <!---->
 <body class="bg-gradient-to-r from-violet-600 to-indigo-600 text-white antialiased">
     <div class="max-w-screen-lg mx-auto">

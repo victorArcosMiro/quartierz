@@ -26,7 +26,7 @@
     <div class="text-center mt-14">
         <p><strong class="">Precio Total:</strong> {{ $datosCarrito['precioTotalCarrito'] }}€</p>
 
-        <p>El dia que se {{ $datosCita['hora'] }} solo sera necesario abonar la <strong>mitad</strong> del total: <strong>{{ $datosCarrito['precioTotalCarrito']/2 }}€</strong></p>
+        <p>El dia que se tome las medidas ({{ $datosCita['fecha'] }}), solo sera necesario abonar la <strong>mitad</strong> del total: <strong>{{ $datosCarrito['precioTotalCarrito']/2 }}€</strong></p>
 
 
     </div>

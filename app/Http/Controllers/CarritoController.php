@@ -144,8 +144,8 @@ class CarritoController extends Controller
 
             $datosCarrito = $this->mostrarDatos();
 
-            $fecha = $request->input('hora');
-            $hora  = $request->input('fecha');
+            $fecha = $request->input('fecha');
+            $hora  = $request->input('hora');
             // Obtener el carrito de la sesión
 
             // Inicializar una variable para almacenar los datos de la cita

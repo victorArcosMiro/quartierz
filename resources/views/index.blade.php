@@ -1,7 +1,7 @@
 @extends('master')
 @section('title, Galería')
 @section('main')
-    <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+    <div class="mx-auto max-w-screen-2xl md:px-8 backdrop-blur-lg shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)] overflow-hidden rounded-lg py-6 px-10">
 
         <div style="background-image: url('/images/10.jpg'); background-position: center;"
             class=" min-h-[700px] overflow-hidden sm:rounded-lg">
@@ -49,7 +49,9 @@
 
         </div>
 
-        <div class="h-96 mt-5 backdrop-blur-md  bg-white/10 shadow-md overflow-hidden sm:rounded-lg">
+
+
+            <div class="h-96 mt-5 backdrop-blur-md  bg-white/10 shadow-md overflow-hidden sm:rounded-lg">
 
             <div class="text-center mt-4 text-2xl">Conoce nuestros diseños</div>
             <!-- Component: Logos carousel -->
@@ -113,9 +115,13 @@
                 });
 
                 glide09.mount();
+
+
             </script>
 
         </div>
+
+</script>
     </div>
 
 @endsection

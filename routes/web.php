@@ -103,3 +103,6 @@ Route::get('/calendar', [CalendarioController::class, 'showCurrentMonth'])->name
 
 
 /* - RUTAS CALENDARIO -  - RUTAS CALENDARIO -  - RUTAS CALENDARIO -  - RUTAS CALENDARIO -  - RUTAS CALENDARIO - */
+Route::get('/helloworld', function () {
+    return view('helloworld');
+})->name('helloworld');

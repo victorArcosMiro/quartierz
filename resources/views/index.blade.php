@@ -1,7 +1,8 @@
 @extends('master')
 @section('title, Galería')
 @section('main')
-    <div class="mx-auto max-w-screen-2xl md:px-8 backdrop-blur-lg shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)] overflow-hidden rounded-lg py-6 px-10">
+    <div
+        class="mx-auto max-w-screen-2xl md:px-8 backdrop-blur-lg shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)] overflow-hidden rounded-lg py-6 px-10 sm:px-2">
 
         <div style="background-image: url('/images/10.jpg'); background-position: center;"
             class=" min-h-[700px] overflow-hidden sm:rounded-lg">
@@ -22,8 +23,7 @@
 
         </div>
 
-        <div
-            class="bg-black h-96 mt-5 shadow-md overflow-hidden sm:rounded-lg px-10">
+        <div class="bg-black h-96 mt-5 shadow-md overflow-hidden sm:rounded-lg px-10">
 
             <div class=" flex flex-col h-96">
 
@@ -31,15 +31,44 @@
 
                     <div class="text-center mx-6 hidden sm:block flex-1 w-32 ...">
                         Descubre una amplia variedad de diseños disponibles en nuestra galería. Desde elegantes piezas de
-                        cromo hasta exquisitas creaciones en oro de 9 y 18 kilates, te ofrecemos una selección excepcional
-                        de materiales para tus gustos más exigentes.
+                        cromo hasta exquisitas creaciones en oro de 9 y 18 kilates.
                     </div>
 
                     <div class="text-center text-6xl flex-1 w-64 ...">
                         Explora nuestros diseños.<br>
                         <form action="{{ route('galeria-show') }}">
-                            <input type="submit" class="bg-blue-500 text-base hover:bg-blue-700 w-40 top-40 text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline mt-4 cursor-pointer" value="Acceder"></input>
-                    </form>
+                            <input type="submit"
+                                class="bg-blue-500 text-base hover:bg-blue-700 w-40 top-40 text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline mt-4 cursor-pointer"
+                                value="Acceder"></input>
+                        </form>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="bg-black h-96 mt-5 shadow-md overflow-hidden sm:rounded-lg px-10">
+
+            <div class=" flex flex-col h-96">
+
+                <div class="flex  h-96 items-center">
+
+                    <div class="text-center text-6xl mx-6 flex-1 w-32 ...">
+                        Crea tus grillz <i>Custom.</i><br>
+                        <form action="{{ route('custom-show') }}">
+                            <input type="submit"
+                                class="bg-blue-500 text-base hover:bg-blue-700 w-40 top-40 text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline mt-4 cursor-pointer"
+                                value="Acceder"></input>
+                        </form>
+                    </div>
+
+                    <div class="text-center hidden sm:block text-base flex-1 w-64 ...">
+                        ¿No ves el diseño para ti? <i>Custom</i> es la sección para las personas que quieran un diseño
+                        totalmente personalizado. Accede a la seccion para ver mas informacion de como es el proceso.
+
                     </div>
 
 
@@ -51,7 +80,12 @@
 
 
 
-            <div class="h-96 mt-5 backdrop-blur-md  bg-white/10 shadow-md overflow-hidden sm:rounded-lg">
+        <?php
+/*
+
+CARROUSEL ___ !!NO ES PARA EL PROYECTO!!
+
+<div class="h-96 mt-5 backdrop-blur-md  bg-white/10 shadow-md overflow-hidden sm:rounded-lg">
 
             <div class="text-center mt-4 text-2xl">Conoce nuestros diseños</div>
             <!-- Component: Logos carousel -->
@@ -115,13 +149,13 @@
                 });
 
                 glide09.mount();
-
-
             </script>
 
         </div>
+*/
+        ?>
 
-</script>
+        </script>
     </div>
 
 @endsection

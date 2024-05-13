@@ -2,9 +2,6 @@
 @section('title, Sobre nosotros')
 @section('main')
     <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
-
-
-        <div class="backdrop-blur-lg shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)] overflow-hidden rounded-lg px-10">
             <div class=" flex flex-col">
                 <div class="flex h-96 items-center">
                     <div class="text-center text-6xl mx-6 flex-1 w-32 ...">
@@ -99,7 +96,4 @@
                 <img class="rounded-xl h-96" src="/images/sobre-nosotros/grillz-oro.jpg" alt="imagen tomandse mediadas">
             </div>
         </div>
-
-
-    </div>
 @endsection

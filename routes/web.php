@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DesignController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CalendarioController;
+use App\Http\Controllers\PedidosController;
+
 
 
 
@@ -57,15 +59,16 @@ Route::delete('/eliminar-cantidad', [CarritoController::class, 'eliminarFilaCarr
 Route::post('/vaciar-carrito', [CarritoController::class, 'vaciarCarrito'])->name('vaciar-Carrito');
 
 Route::post('/finalizarReserva', [CarritoController::class, 'finalizarReserva'])->name('finalizarReserva');
-
-
-
 /* - RUTAS CARRITO -  - RUTAS CARRITO -  - RUTAS CARRITO -  - RUTAS CARRITO -  - RUTAS CARRITO -  - RUTAS CARRITO - */
 
 
 
 
 
+
+/* - RUTAS PEDIDOS -- RUTAS PEDIDOS - - RUTAS PEDIDOS - - RUTAS PEDIDOS - - RUTAS PEDIDOS - - RUTAS PEDIDOS -  */
+Route::post('/confirmar-reserva', [PedidosController::class, 'confirmarReserva'])->name('confirmar_reserva');
+/* - RUTAS PEDIDOS -- RUTAS PEDIDOS - - RUTAS PEDIDOS - - RUTAS PEDIDOS - - RUTAS PEDIDOS - - RUTAS PEDIDOS -  */
 
 
 

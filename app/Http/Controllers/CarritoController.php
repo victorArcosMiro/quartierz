@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Design;
-
+use App\Http\Controllers\PedidosController;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -139,30 +139,45 @@ class CarritoController extends Controller
     }
 
     public function finalizarReserva(Request $request)
-    {
-        if (Auth::check()) {
+{
+    if (Auth::check()) {
+        // Obtener los datos del formulario
+        $fecha = $request->input('fecha');
+        $hora = $request->input('hora');
 
-            $datosCarrito = $this->mostrarDatos();
+        // Crear un nuevo pedido
+        $pedido = new Pedido();
+        $pedido->users_id = auth()->id();
+        $pedido->cita = $fecha . ' ' . $hora;
+        // Supongamos que el precio total del carrito se calcula de alguna manera
+        $pedido->precio_total = $datosCarrito['precioTotalCarrito'];
+        $pedido->save();
 
-            $fecha = $request->input('fecha');
-            $hora  = $request->input('hora');
-            // Obtener el carrito de la sesión
+        // Obtener los datos del carrito de la sesión
+        $datosCarrito = $this->mostrarDatos();
 
-            // Inicializar una variable para almacenar los datos de la cita
-            $datosCita = [];
-
-            // Agregar los datos del formulario al array de datos de la cita
-            $datosCita['fecha'] = $fecha;
-            $datosCita['hora']  = $hora;
-
-            // Inicializar un array para almacenar la información de los productos en arrito junto con el precio total del carrito
-
-            return view('finalizarReserva', compact('datosCarrito', 'datosCita'));
-
-        }else{
-            $logueado=1;
-            return view('auth.login', compact('logueado'));
+        // Recorrer los productos del carrito y guardar los detalles en la tabla pedido_design_cantidad
+        foreach ($datosCarrito['productosCarrito'] as $producto) {
+            $pedidoDesignCantidad = new PedidoDesignCantidad();
+            $pedidoDesignCantidad->pedido_id = $pedido->id;
+            $pedidoDesignCantidad->material_id = $producto['material_id'];
+            // Comprobar si es un diseño de la web o personalizado
+            if ($producto['es_personalizado']) {
+                $pedidoDesignCantidad->custom_id = $producto['design_id'];
+            } else {
+                $pedidoDesignCantidad->design_id = $producto['design_id'];
+            }
+            $pedidoDesignCantidad->cantidad = $producto['cantidad'];
+            $pedidoDesignCantidad->precio = $producto['precioTotal'];
+            $pedidoDesignCantidad->save();
         }
 
+        // Redireccionar a la página de confirmación u otra página según sea necesario
+        return redirect()->route('ruta_de_redireccion');
+    } else {
+        $logueado = 1;
+        return view('auth.login', compact('logueado'));
     }
+}
+
 }

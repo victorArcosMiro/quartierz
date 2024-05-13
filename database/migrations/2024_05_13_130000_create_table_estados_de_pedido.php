@@ -11,16 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('table_pedidos_por_telefono', function (Blueprint $table) {
+        Schema::create('estados_pedido', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('apellidos');
-
-
-            $table->unsignedBigInteger('material_id');
-            $table->unsignedBigInteger('design_id');
-            $table->dateTime('cita');
-            $table->unsignedBigInteger('custom_id')->nullable();;
             $table->timestamps();
         });
     }
@@ -30,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_pedidos_por_telefono');
+        Schema::dropIfExists('estados_pedido');
     }
 };

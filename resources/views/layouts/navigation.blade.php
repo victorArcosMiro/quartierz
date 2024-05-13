@@ -4,7 +4,7 @@
         <div class="flex py-6 max-w-screen-lg mx-auto justify-between pr-5">
             <div class="flex max-w-60">
                 <!-- Logo -->
-                <a class="mr-auto" href="{{ route('inicio-show') }}"><img src="../images/logo-negro.png" alt="Logo"></a>
+                <a class="mr-auto" href="{{ route('inicio-show') }}"><img src="../images/logo-solo-letras.png" alt="Logo"></a>
 
                 <!-- Navigation Links -->
 

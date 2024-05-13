@@ -29,8 +29,5 @@ class Pedido extends Model
         return $this->belongsToMany(Material::class); // Relación muchos a muchos con la tabla 'material'
     }
 
-    public function factura()
-    {
-        return $this->hasOne(Factura::class); // Relación uno a uno con la tabla 'factura'
-    }
+
 }

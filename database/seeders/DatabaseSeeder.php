@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
 
 
           // Orden óptimo para crear las tablas
-
+          $this->call(EstadosPedidoSeeder::class);
           $this->call(MaterialSeeder::class);  // 1. Material (no depende de otras tablas)
           $this->call(UsuarioSeeder::class);    // 2. Cliente (no depende de otras tablas)
 
@@ -28,6 +28,13 @@ class DatabaseSeeder extends Seeder
           $this->call(PedidoSeeder::class);     // 5. Pedido (depende de Cliente, Material, Diseño y Custom)
 
           $this->call(PedidosTelefonoSeeder::class);    // 6. Factura (depende de Cliente y Pedido)
+
+          (new \Database\Seeders\TiposDiasVetados())->run();
+
+          $this->call(DiasVetadosSeeder::class);
+
+          $this->call(PedidoDesignCatidadSeeder::class);
+
 
     }
 }

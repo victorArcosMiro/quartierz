@@ -4,7 +4,6 @@
 
 
 
-    <div class="backdrop-blur-lg shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)] py-6 rounded-lg mx-auto max-w-screen-2xl px-4 md:px-8">
 
         @include('/includes/filtros')
 
@@ -38,6 +37,5 @@
                 </a>
             </div>
             @endforeach
-        </div>
 
     @endsection

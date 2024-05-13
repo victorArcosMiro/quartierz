@@ -21,12 +21,12 @@
 
 @include('layouts.navigation')
 <!---->
-<body class="bg-gradient-to-r from-violet-600 to-indigo-600 text-white antialiased">
+<body class="bg-gradient-to-r from-neutral-900 to-neutral-800 text-white antialiased">
     <div class="max-w-screen-lg mx-auto">
 
         <main class="mt-5">
 
-            <div class="bg-opacity-80 h-auto rounded-lg py-6 sm:py-8 lg:py-12">
+            <div class="mx-auto max-w-screen-2xl md:px-8 backdrop-blur-lg shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] overflow-hidden rounded-lg py-6 px-10 sm:px-2">
 
         @yield('main')
             </div>

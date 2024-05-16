@@ -28,6 +28,9 @@ class Pedido extends Model
     {
         return $this->belongsToMany(Material::class); // Relación muchos a muchos con la tabla 'material'
     }
-
+    public function estado()
+    {
+        return $this->belongsTo(EstadoPedido::class);
+    }
 
 }

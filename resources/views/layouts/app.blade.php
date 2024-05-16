@@ -19,12 +19,8 @@
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gradient-to-r from-violet-600 to-indigo-600 text-white antialiased">
         @include('layouts.navigation')
-
-
-
         <!-- Page Content -->
-        <div class="max-w-screen-lg mx-auto">
-
+        <div class="mx-auto">
             <main class="mt-5">
                 {{ $slot }}
             </main>
@@ -39,5 +35,4 @@
         @endif
     </div>
 </body>
-
 </html>

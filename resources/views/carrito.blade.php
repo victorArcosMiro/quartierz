@@ -134,7 +134,7 @@
         <div class="mt-10 relative overflow-x-auto sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right mb-10">
                 <div class="max-w-md mx-auto">
-                    <form action="{{ route('confirmar_reserva') }}" method="POST">
+                    <form action="{{ route('finalizarReserva') }}" method="POST">
                         @csrf
                         <div class="mb-4">
                             <label for="fecha" class="block text-white text-sm font-bold mb-2">Selecciona un
@@ -160,11 +160,7 @@
                             </select>
                         </div>
                         <div>
-                            <form action="{{ route('confirmar_reserva') }}" method="POST">
-                                @csrf
                                 <button type="submit" id="reservar" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Reservar cita</button>
-                            </form>
-
                         </div>
                     </form>
                     <script>

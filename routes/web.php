@@ -7,8 +7,7 @@ use App\Http\Controllers\DesignController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CalendarioController;
 use App\Http\Controllers\PedidosController;
-
-
+use App\Http\Controllers\FiltrosPedidosController;
 
 
 Route::get('/', function () {
@@ -66,12 +65,26 @@ Route::post('/finalizarReserva', [CarritoController::class, 'finalizarReserva'])
 
 
 
-/* - RUTAS PEDIDOS -- RUTAS PEDIDOS - - RUTAS PEDIDOS - - RUTAS PEDIDOS - - RUTAS PEDIDOS - - RUTAS PEDIDOS -  */
+// RUTAS PEDIDOS
 Route::post('/confirmar-reserva', [PedidosController::class, 'confirmarReserva'])->name('confirmar_reserva');
-/* - RUTAS PEDIDOS -- RUTAS PEDIDOS - - RUTAS PEDIDOS - - RUTAS PEDIDOS - - RUTAS PEDIDOS - - RUTAS PEDIDOS -  */
+
+Route::get('/detalle-pedido/{id}', [FiltrosPedidosController::class,'mostrarDetallesPedido'])->name('detalle-pedido');
+
+Route::post('/historial-pedidos-f', [FiltrosPedidosController::class, 'mostrarPedidosFiltrados'])->name('historial-pedidos-f');
 
 
 
+Route::post('/detalle-pedido-editar/{id}', [FiltrosPedidosController::class,'mostrarDetallesPedidoEditar'])->name('detalle-pedido-editar');
+
+Route::get('/pedidos/{id}/editar', [PedidosController::class, 'editar'])->name('editar-pedido');
+
+
+
+
+
+
+//FILTROS-PEDIDOS-ADMIN
+//Route::post('/historial-pedidos', [FiltrosPedidosController::class, 'historialPedidos'])->name('historial-pedidos');
 
 
 
@@ -87,6 +100,12 @@ Route::get('/info-producto-show{id}', [DesignController::class, 'showInfoProduct
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', [FiltrosPedidosController::class, 'historialPedidos'])->name('historial-pedidos');
+});
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

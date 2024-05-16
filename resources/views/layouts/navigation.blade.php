@@ -42,7 +42,9 @@
                             <x-dropdown-link :href="route('profile.edit')">
                                 {{ __('Perfil') }}
                             </x-dropdown-link>
-
+                            <x-dropdown-link :href="route('historial-pedidos')">
+                                {{ __('Historial de pedidos') }}
+                            </x-dropdown-link>
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -52,15 +54,16 @@
                                                 this.closest('form').submit();">
                                     {{ __('Cerrar sesión') }}
                                 </x-dropdown-link>
+
                             </form>
                         </x-slot>
                     </x-dropdown>
                 @else
                     <div class="ml-4">
-                        <a href="{{ route('login') }}" class="text-base text-black">Login</a>
+                        <a href="{{ route('login') }}" class="text-base hover:text-white text-black">Login</a>
                     </div>
                     <div class="ml-4">
-                        <a href="{{ route('register') }}" class="text-base text-black">Registro</a>
+                        <a href="{{ route('register') }}" class="text-base hover:text-white text-black">Registro</a>
                     </div>
                 @endauth
             </div>

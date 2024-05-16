@@ -4,7 +4,7 @@
 
             <div class="bg-white mt-4 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="text-black text-2xl text-center mt-5">Datos del pedido para modificar</div>
-                <form action="" method="POST">
+                <form action="{{ route('actualizar-pedido', ['id' => $pedido->pedido_id]) }}" method="POST">
                     @csrf
                     @method('PUT')
 
@@ -14,7 +14,6 @@
                                 <div class="text-left">
                                     <p class="mt-4"><strong>ID:</strong> <input type="text" name="pedido_id" value="{{ $pedido->pedido_id }}"></p>
                                     <p class="mt-4"><strong>Fecha Cita:</strong> <input type="text" name="fecha_cita" value="{{ $pedido->fecha_cita }}"></p>
-
                                 </div>
                             </div>
                         </div>
@@ -28,7 +27,6 @@
                                             <th class="p-4">Diseño</th>
                                             <th class="p-4">Material</th>
                                             <th class="p-4">Cantidad</th>
-                                            <th class="p-4">Precio</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -37,7 +35,9 @@
                                                 <td class="p-4 text-center"><input type="text" name="nombre_design[]" value="{{ $detalle->nombre_design }}"></td>
                                                 <td class="p-4 text-center"><input type="text" name="nombre_material[]" value="{{ $detalle->nombre_material }}"></td>
                                                 <td class="p-4 text-center"><input type="number" name="cantidad[]" value="{{ $detalle->cantidad }}"></td>
-                                                <td class="p-4 text-center"><input type="number" name="precio[]" value="{{ $detalle->precio }}"></td>
+                                                <!-- Campos ocultos para detalles del pedido -->
+                                                <input type="hidden" name="detallesPedido[{{ $detalle->id }}][id]" value="{{ $detalle->id }}">
+                                                <input type="hidden" name="detallesPedido[{{ $detalle->id }}][cantidad]" value="{{ $detalle->cantidad }}">
                                             </tr>
                                         @endforeach
                                     </tbody>

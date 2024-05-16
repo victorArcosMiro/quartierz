@@ -143,6 +143,7 @@
                                 class="w-full bg-gray-200 text-black border border-gray-400 rounded px-3 py-2 focus:outline-none focus:bg-white focus:border-blue-500"
                                 required>
                         </div>
+                        <input type="hidden" value="{{$precioTotalCarrito }}" name="precioTotalCarrito">
                         <div class="mb-4">
                             <label for="hora" class="block text-white text-sm font-bold mb-2">Selecciona una
                                 hora:</label>

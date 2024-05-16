@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Design;
-use App\Http\Controllers\PedidosController;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Pedido;
+use App\Models\PedidoDesignCantidad;
 
 use Illuminate\Http\Request;
 
@@ -140,23 +140,52 @@ class CarritoController extends Controller
 
     public function finalizarReserva(Request $request)
     {
+        // Obtener el ID del usuario autenticado
+        $userId = auth()->id();
+
+        // Crear un nuevo registro en la tabla 'pedidos'
+        $pedido = new Pedido();
+        $pedido->user_id = $userId;
+        $pedido->cita = $request->input('fecha') . ' ' . $request->input('hora');
+        $pedido->estado_pedido_id = 1;
+        $pedido->cantidad_total = $request->input('precioTotalCarrito');
+        // Guardar el pedido para obtener su ID
+        $pedido->save();
+
+        // Obtener el ID del pedido recién creado
+        $pedidoId = $pedido->id;
+        // Obtener los datos del carrito de la sesión
         $datosCarrito = $this->mostrarDatos();
+        // Inicializar la cantidad total del pedido
+        // Iterar sobre los productos del carrito y crear un nuevo registro en la tabla 'pedido_design_cantidad' para cada producto
+        foreach ($datosCarrito['productosCarrito'] as $producto) {
+            // Crear un nuevo registro en la tabla 'pedido_design_cantidad'
+            $pedidoDesignCantidad = new PedidoDesignCantidad();
+            $pedidoDesignCantidad->pedido_id = $pedidoId;
+            $pedidoDesignCantidad->design_id = $producto['id']; // Supongamos que 'id' es el ID del diseño del producto
+            $pedidoDesignCantidad->cantidad = $producto['cantidad'];
 
-        $fecha = $request->input('hora');
-        $hora  = $request->input('fecha');
-        // Obtener el carrito de la sesión
+            // Obtener el precio del diseño en función de su design_id
+            $design = Design::find($producto['id']);
 
+            // Obtener el material_id del diseño
+            $materialId = $design->material_id;
+            $pedidoDesignCantidad->material_id = $materialId;
 
-        // Inicializar una variable para almacenar los datos de la cita
-        $datosCita = [];
+            // Guardar el registro en la tabla 'pedido_design_cantidad'
+            $pedidoDesignCantidad->precio = $design->precio;
 
-        // Agregar los datos del formulario al array de datos de la cita
-        $datosCita['fecha'] = $fecha;
-        $datosCita['hora']  = $hora;
+            $pedidoDesignCantidad->save();
+        }
+        // Crear un array con los datos de la cita para pasarlos a la vista
+        $datosCita = [
+            'fecha' => $request->input('fecha'),
+            'hora' => $request->input('hora'),
+        ];
 
-        // Inicializar un array para almacenar la información de los productos en arrito junto con el precio total del carrito
-
+        // Retornar la vista finalizarReserva con los datos del carrito y la cita
         return view('finalizarReserva', compact('datosCarrito', 'datosCita'));
     }
+
 
 }

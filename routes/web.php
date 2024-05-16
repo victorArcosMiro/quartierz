@@ -66,7 +66,7 @@ Route::post('/finalizarReserva', [CarritoController::class, 'finalizarReserva'])
 
 
 // RUTAS PEDIDOS
-Route::post('/confirmar-reserva', [PedidosController::class, 'confirmarReserva'])->name('confirmar_reserva');
+
 
 Route::get('/detalle-pedido/{id}', [FiltrosPedidosController::class,'mostrarDetallesPedido'])->name('detalle-pedido');
 
@@ -76,7 +76,8 @@ Route::post('/historial-pedidos-f', [FiltrosPedidosController::class, 'mostrarPe
 
 Route::post('/detalle-pedido-editar/{id}', [FiltrosPedidosController::class,'mostrarDetallesPedidoEditar'])->name('detalle-pedido-editar');
 
-Route::get('/pedidos/{id}/editar', [PedidosController::class, 'editar'])->name('editar-pedido');
+
+Route::put('/actualizar-pedido/{id}', [PedidosController::class, 'actualizarPedido'])->name('actualizar-pedido');
 
 
 

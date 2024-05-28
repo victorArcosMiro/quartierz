@@ -8,6 +8,8 @@ use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CalendarioController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\FiltrosPedidosController;
+use App\Http\Controllers\PedidiosTlfController;
+
 
 
 Route::get('/', function () {
@@ -66,18 +68,56 @@ Route::post('/finalizarReserva', [CarritoController::class, 'finalizarReserva'])
 
 
 // RUTAS PEDIDOS
-
-
 Route::get('/detalle-pedido/{id}', [FiltrosPedidosController::class,'mostrarDetallesPedido'])->name('detalle-pedido');
+
+Route::get('/detalle-pedido-tlf/{id}', [FiltrosPedidosController::class, 'mostrarDetallesPedidoTlf'])->name('detalle-pedido-tlf');
+
 
 Route::post('/historial-pedidos-f', [FiltrosPedidosController::class, 'mostrarPedidosFiltrados'])->name('historial-pedidos-f');
 
+Route::get('/historial-pedidos-tlf', [FiltrosPedidosController::class, 'historialPedidosTlf'])->name('historial-pedidos-tlf');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/historial-pedidos', [FiltrosPedidosController::class, 'historialPedidos'])->name('historial-pedidos');
+});
 
 
 Route::post('/detalle-pedido-editar/{id}', [FiltrosPedidosController::class,'mostrarDetallesPedidoEditar'])->name('detalle-pedido-editar');
 
+Route::post('/detalle-pedido-tlf-editar/{id}', [FiltrosPedidosController::class,'mostrarDetallesPedidoTlfEditar'])->name('detalle-pedido-tlf-editar');
+
 
 Route::put('/actualizar-pedido/{id}', [PedidosController::class, 'actualizarPedido'])->name('actualizar-pedido');
+
+Route::post('/actualizar-estado-pedido', [PedidosController::class, 'actualizarEstado'])->name('actualizar-estado-pedido');
+
+Route::post('/actualizar-estado-pedido-tlf', [PedidosController::class, 'actualizarEstadoTlf'])->name('actualizar-estado-pedido-tlf');
+
+Route::put('/actualizar-pedido-tlf/{id}', [PedidosController::class, 'actualizarPedidoTlf'])
+    ->name('actualizar-pedido-tlf');
+
+Route::post('/historial-pedidos-tlf-f', [FiltrosPedidosController::class, 'mostrarPedidosTlfFiltrados'])->name('historial-pedidos-tlf-f');
+
+
+// RUTAS PEDIDIOS TELEFÓNICOS
+
+
+Route::post('/add-producto-tlf', [PedidiosTlfController::class, 'addProductoTlf'])->name('add-producto-tlf');
+Route::post('/eliminar-producto-tlf', [PedidiosTlfController::class, 'eliminarProductoTlf'])->name('eliminar-producto-tlf');
+Route::post('/vaciar-productos-tlf', [PedidiosTlfController::class, 'vaciarProductosTlf'])->name('vaciar-productos-tlf');
+// Ruta para crear un nuevo pedido por teléfono
+Route::post('/guardar-pedido-tlf', [PedidiosTlfController::class, 'guardarPedido'])->name('guardar-pedido-tlf');
+
+    Route::get('/pedido-telefono', function () {
+        return view('pedido-telefono');
+    })->name('pedido-telefono');
+
+
+
 
 
 
@@ -85,7 +125,6 @@ Route::put('/actualizar-pedido/{id}', [PedidosController::class, 'actualizarPedi
 
 
 //FILTROS-PEDIDOS-ADMIN
-//Route::post('/historial-pedidos', [FiltrosPedidosController::class, 'historialPedidos'])->name('historial-pedidos');
 
 
 
@@ -98,13 +137,7 @@ Route::get('/info-producto-show{id}', [DesignController::class, 'showInfoProduct
 
 
 /* - RUTAS BREEZE -  - RUTAS BREEZE -  - RUTAS BREEZE -  - RUTAS BREEZE -  - RUTAS BREEZE -  - RUTAS BREEZE -  - RUTAS BREEZE - */
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', [FiltrosPedidosController::class, 'historialPedidos'])->name('historial-pedidos');
-});
 
 
 
@@ -116,13 +149,6 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 /* - RUTAS BREEZE -  - RUTAS BREEZE -  - RUTAS BREEZE -  - RUTAS BREEZE -  - RUTAS BREEZE -  - RUTAS BREEZE -  - RUTAS BREEZE - */
-
-
-
-/* - RUTAS CALENDARIO -  - RUTAS CALENDARIO -  - RUTAS CALENDARIO -  - RUTAS CALENDARIO -  - RUTAS CALENDARIO - */
-
-
-Route::get('/calendar', [CalendarioController::class, 'showCurrentMonth'])->name('calendar');
 
 
 /* - RUTAS CALENDARIO -  - RUTAS CALENDARIO -  - RUTAS CALENDARIO -  - RUTAS CALENDARIO -  - RUTAS CALENDARIO - */

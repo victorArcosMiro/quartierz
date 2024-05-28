@@ -22,7 +22,9 @@ class UsuarioSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
             DB::table('users')->insert([
                 'name' => $faker->firstName,
+                'surname' => $faker->lastName,
                 'email' => $faker->unique()->safeEmail,
+                'phone' => $faker->phoneNumber,
                 'email_verified_at' => now(),
                 'password' => Hash::make('contraseña'),
                 'created_at' => now(),

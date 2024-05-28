@@ -6,6 +6,7 @@ use App\Models\Design;
 use App\Models\Pedido;
 use App\Models\PedidoDesignCantidad;
 
+use App\Models\PedidosPorTelefono;
 use Illuminate\Http\Request;
 
 class CarritoController extends Controller
@@ -140,13 +141,30 @@ class CarritoController extends Controller
 
     public function finalizarReserva(Request $request)
     {
+        if (!auth()->check()) {
+            // Redirigir a la vista de login si el usuario no está autenticado
+            return redirect()->route('login');
+        }
+
+        // Obtener la fecha y hora del request
+        $fechaHora = $request->input('fecha') . ' ' . $request->input('hora');
+
+        // Verificar si ya existe un pedido para la misma fecha y hora
+        $pedidoExistente = Pedido::where('cita', $fechaHora)->exists();
+        $pedidoExistenteTlf = PedidosPorTelefono::where('cita', $fechaHora)->exists();
+
+        // Si ya existe un pedido para la misma fecha y hora, retornar con un mensaje de error
+        if ($pedidoExistente || $pedidoExistenteTlf) {
+            return back()->with('error', 'Ya hay un pedido registrado para la misma fecha y hora.');
+        }
+
         // Obtener el ID del usuario autenticado
         $userId = auth()->id();
 
         // Crear un nuevo registro en la tabla 'pedidos'
         $pedido = new Pedido();
         $pedido->user_id = $userId;
-        $pedido->cita = $request->input('fecha') . ' ' . $request->input('hora');
+        $pedido->cita = $fechaHora;
         $pedido->estado_pedido_id = 1;
         $pedido->cantidad_total = $request->input('precioTotalCarrito');
         // Guardar el pedido para obtener su ID

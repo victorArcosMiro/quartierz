@@ -16,6 +16,7 @@ class PedidoDesignCantidad extends Migration
             $table->unsignedBigInteger('material_id');
             $table->unsignedBigInteger('design_id')->nullable();
             $table->unsignedBigInteger('custom_id')->nullable();
+            $table->boolean('pedido_tlf')->default(false);
             $table->integer('cantidad');
             $table->integer('precio');
             $table->timestamps();

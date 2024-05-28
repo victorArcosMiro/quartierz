@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -29,11 +27,13 @@ class DatabaseSeeder extends Seeder
 
           $this->call(PedidosTelefonoSeeder::class);    // 6. Factura (depende de Cliente y Pedido)
 
-          (new \Database\Seeders\TiposDiasVetados())->run();
+          $this->call(TiposDiasVetados::class);
 
           $this->call(DiasVetadosSeeder::class);
 
-          $this->call(PedidoDesignCatidadSeeder::class);
+          $this->call(PedidoDesignCantidadSeeder::class);
+
+
 
 
     }

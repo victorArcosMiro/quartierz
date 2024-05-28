@@ -34,95 +34,122 @@
     </div>
     <div class="text-6xl text-center mb-6">Echale un vistazo a los diseños <i>Custom</i> que hemos creado.</div>
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 xl:gap-8">
-        <!-- image - start -->
         <a href="#" class="group relative flex h-48 items-start overflow-hidden rounded-lg md:col-span-2 md:h-80">
             <img src="/images/custom/varios-disenos.jpg" loading="lazy" alt="Photo by Magicle"
                 class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
         </a>
-        <!-- image - end -->
-
-        <!-- image - start -->
 
         <a href="#" class="group relative flex h-48 items-start overflow-hidden rounded-lg  md:h-80">
             <img src="/images/custom/grillz-1pieza-ventana-BUENAFOTO.jpg" loading="lazy" alt=""
                 class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
         </a>
-        <!-- image - end -->
-        <!-- image - start -->
         <a href="#" class="group relative flex h-48 items-end overflow-hidden rounded-lg  md:h-80">
             <img src="/images/custom/X-palas-cromo-zoom.jpeg" loading="lazy" alt="Photo by Lorenzo Herrera"
                 class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
 
         </a>
-        <!-- image - end -->
-        <!-- image - start -->
+
         <a href="#" class="group relative flex h-48 items-end overflow-hidden rounded-lg  md:col-span-2 md:h-80">
             <img src="/images/11.jpg" loading="lazy" alt="Photo by Martin Sanchez"
                 class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
 
         </a>
-        <!-- image - end -->
 
 
     </div>
     <form class="grid grid-cols-2 gap-4 sm:grid-cols-1 md:gap-0 mt-4">
-        <div class="mt-10 mb-10 text-2xl font-medium">1. Introcue tus datos:</div>
-        <div class="grid-col">
-            <label for="nombre" class="block mb-2 font-medium text-white">Nombre</label>
-            <input type="text" id="firstName" name="nombre"
-                class="form-control w-full rounded-md border border-gray-300 px-2 py-2" required>
-        </div>
-
-        <div class="grid-col">
-            <label for="apellido" class="block mb-2 font-medium text-white">Apellidos</label>
-            <input type="text" id="firstName" name="apellido"
-                class="form-control w-full rounded-md border border-gray-300 px-2 py-2" required>
-        </div>
-
-        <div class="grid-col">
-            <label for="firstName" class="block mb-2 font-medium text-white">Correo electrónico</label>
-            <input type="text" id="firstName" name="firstName"
-                class="form-control w-full rounded-md border border-gray-300 px-2 py-2" required>
-        </div>
-
-        <div class="mt-10 mb-10 text-2xl font-medium">2. Descraga la plantilla y sube tu:</div>
-        <div class="grid-col mt-5">
-            <a class="bg-gray-200 mb-2 font-medium text-black form-control w-full rounded-md border border-gray-600 px-5 py-2"
-                href="/platilla/plantilla_grillz.pdf" download="plantilla_grillz.pdf">Descargar:
-                plantilla-grillz.pdf</a>
-
-        </div>
+        <div class="mt-10 mb-10 text-2xl font-medium">1. <a class="underline" href="{{ route('login') }}">Inicia sesión</a>
+            o <a class="underline" href="{{ route('register') }}">registrate</a> si no lo estás.</div>
 
 
+        <div class="mt-10 mb-10 text-2xl font-medium">2. Descraga la plantilla y compartenos tu diseño:</div>
+        <div>1º Primero <a class="underline" href="">accede a la plantilla</a> y haz una copia.</div>
+        <div>2º Realiza tu diseño sobre la plantilla.</div>
+        <div>3º Compartenos el link del diseño, asegurate de que esta público o compartelo con nuestro correo
+            (quartierz@gmail.com).</div>
 
-        <div class="flex items-center justify-center w-full mt-5">
-            <label for="dropzone-file"
-                class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
-                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                    <svg class="w-8 h-8 mb-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 20 16">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
-                    </svg>
-                    <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click
-                            to upload</span> or drag and drop</p>
-                    <p class="text-xs text-gray-500">SVG, PNG, JPG or GIF (MAX. 800x400px)
-                    </p>
-                </div>
-                <input id="dropzone-file" type="file" class="hidden" />
-            </label>
-        </div>
+        <div class="mt-10 mb-10 text-2xl font-medium">3. Compartenos tu deseño y elige un dia para tomarte las medidas:</div>
+
+        <form action="{{ route('finalizarReserva') }}" method="POST">
+            @csrf
+            <div class="mb-4">
+                <label for="fecha" class="block text-white text-sm font-bold mb-2">Pega el link del diseño:</label>
+                <input type="text" id="link-design" name="link-design"
+                    class="w-full bg-gray-200 text-black border border-gray-400 rounded px-3 py-2 focus:outline-none focus:bg-white focus:border-blue-500"
+                    required>
+            </div>
+
+            <div class="mb-4">
+                <label for="fecha" class="block text-white text-sm font-bold mb-2">Selecciona un
+                    día:</label>
+                <input type="date" id="fecha" name="fecha"
+                    class="w-full bg-gray-200 text-black border border-gray-400 rounded px-3 py-2 focus:outline-none focus:bg-white focus:border-blue-500"
+                    required>
+            </div>
+            <div class="mb-4">
+                <label for="hora" class="block text-white text-sm font-bold mb-2">Selecciona una
+                    hora:</label>
+                <select id="hora" name="hora"
+                    class="text-black w-full bg-gray-200 border border-gray-400 rounded px-3 py-2 focus:outline-none focus:bg-white focus:border-blue-500"
+                    required>
+                    <option value="" disabled selected>Selecciona una hora</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="10:30">10:30 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="11:30">11:30 AM</option>
+                    <option value="12:00">12:00 PM</option>
+                    <option value="12:30">12:30 PM</option>
+                    <option value="13:00">01:00 PM</option>
+                </select>
+            </div>
+            <div>
+                <button type="submit" id="reservar"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Reservar
+                    cita</button>
+            </div>
+        </form>
+        <script>
+            //Script para restringir al usuario seleccionar sabados o domingos
+            document.addEventListener('DOMContentLoaded', function() {
+                var fechaInput = document.getElementById('fecha');
+                var horaSelect = document.getElementById('hora');
+                var reservaBoton = document.getElementById('reservar');
+
+                fechaInput.addEventListener('change', function() {
+                    var fechaSeleccionada = new Date(this.value);
+                    var diaSemana = fechaSeleccionada
+                        .getDay(); // Obtiene el día de la semana (0 para Domingo, 1 para Lunes, ..., 6 para Sábado)
+
+                    // Array de festivos en Zaragoza 2024 (formato: mes-día)
+                    var festivos = ['01-01', '01-06', '03-28', '03-29', '04-23', '05-01', '08-15', '10-12',
+                        '11-01', '12-06', '12-09', '12-25'
+                    ];
+
+                    // Formatea la fecha seleccionada en formato mes-día (MM-DD)
+                    var fechaFormateada = ('0' + (fechaSeleccionada.getMonth() + 1)).slice(-2) + '-' + ('0' +
+                        fechaSeleccionada.getDate()).slice(-2);
+
+                    // Verifica si la fecha seleccionada es un sábado (6) o un domingo (0), o si es un festivo en Zaragoza 2024
+                    if (diaSemana === 0 || diaSemana === 6 || festivos.includes(fechaFormateada)) {
+                        alert(
+                            'La fecha seleccionada es un festivo en Zaragoza o un sábado/domingo. Por favor, elige otra fecha.'
+                        );
+                        horaSelect.disabled = true;
+                        reservaBoton.setAttribute("disabled", "true");
+                        horaSelect.value = ''; // Resetea la selección de hora
+                    } else {
+                        horaSelect.disabled = false;
+                        reservaBoton.removeAttribute("disabled");
+                    }
+                });
+            });
+        </script>
 
 
 
 
-
-
-        <div class="grid-col-span-2 mt-4">
-            <button type="submit" class="btn btn-primary w-full">Enviar</button>
-        </div>
     </form>
 
 

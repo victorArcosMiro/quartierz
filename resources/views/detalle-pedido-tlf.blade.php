@@ -4,36 +4,33 @@
 
             <div class="bg-white mt-4 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <h2 class="text-3xl text-center mb-5 text-black mt-5">Información del Pedido</h2>
-                <form action="{{ route('detalle-pedido-editar', ['id' => $pedido->id]) }}" method="POST" class="flex justify-center">
+                <form action="{{ route('detalle-pedido-tlf-editar', ['id' => $pedido_tlf->id]) }}" method="POST" class="flex justify-center">
                     @csrf
                     <button type="submit" class="bg-blue-500 text-base hover:bg-blue-700 w-40 text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline mt-4 cursor-pointer mx-auto">Editar pedido</button>
-
                 </form>
                 <div class="p-6 text-gray-900 dark:text-gray-100 flex sm:flex-row flex-col justify-around">
                     <div>
-                        <div class="flex items-center justify-center"> <!-- Para centrar el div -->
-                            <div class="text-left"> <!-- Para alinear el texto a la izquierda -->
-                                <p class="mt-4"><strong>ID:</strong> {{ $pedido->id }}</p>
-                                <p class="mt-4"><strong>Fecha Cita:</strong> {{ $pedido->cita }}</p>
+                        <div class="flex items-center justify-center">
+                            <div class="text-left">
+                                <p class="mt-4"><strong>ID:</strong> {{ $pedido_tlf->id }}</p>
+                                <p class="mt-4"><strong>Fecha Cita:</strong> {{ $pedido_tlf->cita }}</p>
                                 <p class="mt-4"><strong>Estado:</strong>
-                                    @if($pedido->estado->id == 1)
+                                    @if($pedido_tlf->estado_pedido_id == 1)
                                         Pendiente de cita
-                                    @elseif($pedido->estado->id == 2)
+                                    @elseif($pedido_tlf->estado_pedido_id == 2)
                                         Fabricando
-                                    @elseif($pedido->estado->id == 3)
+                                    @elseif($pedido_tlf->estado_pedido_id == 3)
                                         Pendiente de entrega
-                                    @elseif($pedido->estado->id == 4)
+                                    @elseif($pedido_tlf->estado_pedido_id == 4)
                                         Entregado
                                     @else
                                         Estado desconocido
                                     @endif
                                 </p>
-                                <p class="mt-4"><strong>Nombre:</strong> {{  $pedido->user->name }} {{  $pedido->user->surname }}</p>
-                                <p class="mt-4"><strong>Email:</strong> {{ $pedido->user->email }}</p>
-                                <p class="mt-4"><strong>Teléfono:</strong> {{ $pedido->user->phone }}</p>
+                                <p class="mt-4"><strong>Nombre:</strong> {{ $pedido_tlf->nombre }} {{ $pedido_tlf->apellidos }}</p>
+                                <p class="mt-4"><strong>Teléfono:</strong> {{ $pedido_tlf->telefono }}</p>
                             </div>
                         </div>
-
                     </div>
                     <div class="flex items-center justify-center">
                         @if ($detallesPedido->isEmpty())
@@ -58,14 +55,9 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-                                <tbody>
-
-                                </tbody>
                             </table>
                         @endif
-
                     </div>
-
                 </div>
                 <div class="text-black text-center my-5 text-xl">Precio Total del Pedido: {{ $precioTotal }}€</div>
             </div>

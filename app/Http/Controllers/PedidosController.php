@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pedido;
 use App\Models\PedidoDesignCantidad;
+use App\Models\PedidosPorTelefono;
 
 class PedidosController extends Controller
 {
@@ -17,27 +18,76 @@ class PedidosController extends Controller
      */
     public function actualizarPedido(Request $request, $id)
     {
-        // Lógica de validación de datos recibidos
+        // Validar los datos recibidos si es necesario
 
-        // Actualizar el pedido en la base de datos
+        // Buscar el pedido por su ID
         $pedido = Pedido::find($id);
-        $pedido->cita = $request->input('fecha_cita');
-        $pedido->save();
 
-        // Actualizar los detalles del pedido en la base de datos
+        // Actualizar los detalles del pedido
         $detallesPedido = $request->input('detallesPedido');
+
         if ($detallesPedido) {
             foreach ($detallesPedido as $idDetalle => $detalle) {
+                // Buscar el detalle del pedido por su ID
                 $detallePedido = PedidoDesignCantidad::find($idDetalle);
+
                 if ($detallePedido) {
+                    // Actualizar la cantidad del detalle del pedido
                     $detallePedido->cantidad = $detalle['cantidad'];
-                    // Actualizar otros campos del detalle del pedido según sea necesario
                     $detallePedido->save();
                 }
             }
         }
 
-        // Redireccionar a una vista de confirmación o a la página de detalles del pedido actualizado
+        // Redireccionar a la vista de detalles del pedido actualizado
         return redirect()->route('detalle-pedido-editar', ['id' => $pedido->id]);
+    }
+
+    public function actualizarEstado(Request $request)
+    {
+        $request->validate([
+            'pedido_id' => 'required|exists:pedido,id',
+            'estado_id' => 'required|exists:estados_pedido,id',
+        ]);
+
+        $pedido = Pedido::findOrFail($request->pedido_id);
+        $pedido->estado_pedido_id = $request->estado_id;
+        $pedido->save();
+
+        return redirect()->back();
+    }
+    public function actualizarEstadoTlf(Request $request)
+    {
+        // Validar los datos recibidos en la solicitud
+        $request->validate([
+            'pedido_tlf_id' => 'required|exists:pedido,id',
+            'estado_id' => 'required|exists:estados_pedido,id',
+        ]);
+
+        // Encontrar el pedido telefónico por su ID
+        $pedidoTlf = PedidosPorTelefono::findOrFail($request->pedido_tlf_id);
+
+        // Actualizar el estado del pedido telefónico
+        $pedidoTlf->estado_pedido_id = $request->estado_id;
+        $pedidoTlf->save();
+
+        // Redirigir de vuelta a la página anterior
+        return redirect()->back();
+    }
+    public function actualizarPedidoTlf(Request $request, $id)
+    {
+        $pedido_tlf = PedidosPorTelefono::findOrFail($id);
+        $pedido_tlf->cita = $request->input('fecha_cita');
+        $pedido_tlf->save();
+
+        $detallesPedido = $request->input('detallesPedido');
+
+        foreach ($detallesPedido as $detalleData) {
+            $detalle = PedidoDesignCantidad::findOrFail($detalleData['id']);
+            $detalle->cantidad = $request->input('cantidad')[$detalleData['id']];
+            $detalle->save();
+        }
+
+        return redirect()->route('detalle-pedido-tlf', ['id' => $id])->with('success', 'Pedido actualizado correctamente');
     }
 }

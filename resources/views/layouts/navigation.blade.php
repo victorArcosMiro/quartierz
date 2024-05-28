@@ -42,6 +42,9 @@
                             <x-dropdown-link :href="route('profile.edit')">
                                 {{ __('Perfil') }}
                             </x-dropdown-link>
+                            <x-dropdown-link :href="route('pedido-telefono')">
+                                {{ __('Pedidios por teléfono') }}
+                            </x-dropdown-link>
                             <x-dropdown-link :href="route('historial-pedidos')">
                                 {{ __('Historial de pedidos') }}
                             </x-dropdown-link>

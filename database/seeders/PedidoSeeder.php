@@ -24,44 +24,56 @@ class PedidoSeeder extends Seeder
 
         // Precios por pieza de cada diseño
         $preciosPorPieza = [
-            1 => 180,   // Precio del diseño con ID 1
-        2 => 350,   // Precio del diseño con ID 2
-        3 => 500,   // Precio del diseño con ID 3
-        4 => 650,   // Precio del diseño con ID 4
-        5 => 900,   // Precio del diseño con ID 5
-        6 => 1100,  // Precio del diseño con ID 6
-        7 => 90,    // Precio del diseño con ID 7
-        8 => 170,   // Precio del diseño con ID 8
-        9 => 240,   // Precio del diseño con ID 9
-        10 => 310,  // Precio del diseño con ID 10
-        11 => 450,  // Precio del diseño con ID 11
-        12 => 580,  // Precio del diseño con ID 12
-        13 => 120,  // Precio del diseño con ID 13
-        14 => 240,  // Precio del diseño con ID 14
-        15 => 360,  // Precio del diseño con ID 15
-        16 => 480,  // Precio del diseño con ID 16
-        17 => 600,  // Precio del diseño con ID 17
-        18 => 720,  // Precio del diseño con ID 18
+        1 => 180,
+        2 => 350,
+        3 => 500,
+        4 => 650,
+        5 => 900,
+        6 => 1100,
+        7 => 90,
+        8 => 170,
+        9 => 240,
+        10 => 310,
+        11 => 450,
+        12 => 580,
+        13 => 120,
+        14 => 240,
+        15 => 360,
+        16 => 480,
+        17 => 600,
+        18 => 720,
         ];
 
-        // Generar pedidos de ejemplo
-        for ($i = 0; $i < 10; $i++) {
-            $designId = rand(2, 18); // Seleccionar un diseño aleatorio
-            $cantidad = rand(1, 3);
-            $precioPorPieza = $preciosPorPieza[$designId];
-            $precioTotal = $cantidad * $precioPorPieza;
+       // Generar pedidos de ejemplo
+for ($i = 0; $i < 10; $i++) {
+    $designId = rand(2, 18); // Seleccionar un diseño aleatorio
+    $cantidad = rand(1, 3);
+    $precioPorPieza = $preciosPorPieza[$designId];
+    $precioTotal = $cantidad * $precioPorPieza;
 
-            $pedido = [
-                'user_id' => $usersIds->random(),
-                'cita' => Carbon::now()->addDays(rand(1, 30))->toDateTimeString(),
-                'estado_pedido_id' =>rand(1, 4),
-                'cantidad_total' => $cantidad,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ];
+    // Generar una fecha aleatoria para el pedido
+    $fechaAleatoria = Carbon::today()->addDays(rand(1, 30)); // Agregar un número aleatorio de días a la fecha actual
 
-            // Insertar el pedido en la base de datos
-            DB::table('pedido')->insert($pedido);
-        }
+    // Generar una hora aleatoria entre 16:00 y 20:00
+    $horaAleatoria = Carbon::createFromTime(16, 0); // Hora inicial a las 16:00
+
+    // Añadir un número aleatorio de medias horas (intervalos de 30 minutos)
+    $horaAleatoria->addMinutes(rand(0, 15) * 30);
+
+    // Combinar fecha y hora para la cita
+    $cita = $fechaAleatoria->toDateString() . ' ' . $horaAleatoria->toTimeString();
+
+    $pedido = [
+        'user_id'           => $usersIds->random(),
+        'cita'              => $cita,
+        'estado_pedido_id'  => rand(1, 4),
+        'cantidad_total'    => $cantidad,
+        'created_at'        => Carbon::now(),
+        'updated_at'        => Carbon::now(),
+    ];
+
+    // Insertar el pedido en la base de datos
+    DB::table('pedido')->insert($pedido);
+}
     }
 }

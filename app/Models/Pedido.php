@@ -9,11 +9,6 @@ class Pedido extends Model
 {
     protected $table = 'pedido'; // Nombre de la tabla en la base de datos
 
-    public function cliente()
-    {
-        return $this->belongsTo(Cliente::class); // Relación uno a uno con la tabla 'cliente'
-    }
-
     public function custom()
     {
         return $this->hasOne(Custom::class); // Relación uno a cero con la tabla 'custom'
@@ -30,7 +25,14 @@ class Pedido extends Model
     }
     public function estado()
     {
-        return $this->belongsTo(EstadoPedido::class);
+        return $this->belongsTo(EstadoPedido::class, 'estado_pedido_id');
     }
-
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function detalles()
+    {
+        return $this->hasMany(PedidoDesignCantidad::class);
+    }
 }

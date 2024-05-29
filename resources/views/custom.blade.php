@@ -1,44 +1,14 @@
 @extends('master')
 @section('title, Galería')
 @section('main')
-    <div class="mb-4 flex flex-col items-center justify-between gap-8 sm:mb-8 md:mb-12">
-
-        <div class="flex flex-col md:flex-row md:items-center md:gap-12">
-            <h2 class="text-2xl font-bold text-white-800 md:text-3xl md:w-1/3">¿Cómo te muestro mi idea?</h2>
-            <p class="max-w-screen-sm text-white-500 md:w-2/3">
-                En el formulario situado en la parte inferior de esta sección encontrarás una plantilla descargable para que
-                plasmes tu idea y nos la puedas enseñar fácilmente.
-            </p>
-        </div>
 
 
-        <div class="flex flex-col md:flex-row md:items-center md:gap-12">
-            <h2 class="text-2xl font-bold text-white-800 md:text-3xl md:w-1/3">¿La plantilla no es suficiente...?</h2>
-            <p class="max-w-screen-sm text-white-500 md:w-2/3">
-                No te preocupes, para nosotros tampoco es suficiente y por eso te ofrecemos un apartado en el formulario
-                para que nos comentes todos los detalles del diseño. Además podrás contarnos y preguntar cualquier cosa
-                sobre el producto el día que vengas a consulta para tomarte medidas.
-            </p>
-        </div>
-
-        <div class="flex flex-col md:flex-row md:items-center md:gap-12">
-            <h2 class="text-2xl font-bold text-white-800 md:text-3xl md:w-1/3">No estoy seguro del todo...</h2>
-            <p class="max-w-screen-sm text-white-500 md:w-2/3">
-                Tranquilo, yo tampoco estaba seguro mi primera vez... Ponte en contacto con nosotros para cualquier tipo de
-                consulta que tengas ya sea mediante WhatsApp, Instagram, Twitter, correo electrónico, paloma mensajera...
-            </p>
-        </div>
-
-
-
-    </div>
     <div class="text-6xl text-center mb-6">Echale un vistazo a los diseños <i>Custom</i> que hemos creado.</div>
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 xl:gap-8">
         <a href="#" class="group relative flex h-48 items-start overflow-hidden rounded-lg md:col-span-2 md:h-80">
             <img src="/images/custom/varios-disenos.jpg" loading="lazy" alt="Photo by Magicle"
                 class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
         </a>
-
         <a href="#" class="group relative flex h-48 items-start overflow-hidden rounded-lg  md:h-80">
             <img src="/images/custom/grillz-1pieza-ventana-BUENAFOTO.jpg" loading="lazy" alt=""
                 class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
@@ -46,19 +16,64 @@
         <a href="#" class="group relative flex h-48 items-end overflow-hidden rounded-lg  md:h-80">
             <img src="/images/custom/X-palas-cromo-zoom.jpeg" loading="lazy" alt="Photo by Lorenzo Herrera"
                 class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-
-
         </a>
 
         <a href="#" class="group relative flex h-48 items-end overflow-hidden rounded-lg  md:col-span-2 md:h-80">
             <img src="/images/11.jpg" loading="lazy" alt="Photo by Martin Sanchez"
                 class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-
-
         </a>
-
-
     </div>
+
+
+    <div class="mb-4 flex flex-col items-center justify-between gap-8 sm:mb-8 md:mb-12 mt-10">
+        <button id="alternarColapso" class="text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-md">Mostrar/Ocultar
+            Preguntas frecuentes</button>
+
+        <div id="colapsoPreguntasFrecuentes" class="hidden">
+            <div class="flex flex-col md:flex-row md:items-center md:gap-12">
+                <h2 class="text-2xl font-bold text-white md:text-3xl md:w-1/3">¿Cómo te muestro mi idea?</h2>
+                <p class="max-w-screen-sm text-white md:w-2/3">
+                    En el formulario situado en la parte inferior de esta sección encontrarás una plantilla descargable para
+                    que
+                    plasmes tu idea y nos la puedas enseñar fácilmente.
+                </p>
+            </div>
+
+            <div class="flex flex-col md:flex-row md:items-center md:gap-12">
+                <h2 class="text-2xl font-bold textwhite md:text-3xl md:w-1/3">¿La plantilla no es suficiente...?</h2>
+                <p class="max-w-screen-sm text-white md:w-2/3 mt-2">
+                    No te preocupes, para nosotros tampoco es suficiente y por eso te ofrecemos un apartado en el formulario
+                    para que nos comentes todos los detalles del diseño. Además podrás contarnos y preguntar cualquier cosa
+                    sobre el producto el día que vengas a consulta para tomarte medidas.
+                </p>
+            </div>
+
+            <div class="flex flex-col md:flex-row md:items-center md:gap-12">
+                <h2 class="text-2xl font-bold text-white md:text-3xl md:w-1/3">No estoy seguro del todo...</h2>
+                <p class="max-w-screen-sm textwhite md:w-2/3 mt-2">
+                    Tranquilo, yo tampoco estaba seguro mi primera vez... Ponte en contacto con nosotros para cualquier tipo
+                    de
+                    consulta que tengas ya sea mediante WhatsApp, Instagram, Twitter, correo electrónico...
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const alternarColapso = document.getElementById('alternarColapso');
+        const colapsoPreguntasFrecuentes = document.getElementById('colapsoPreguntasFrecuentes');
+
+        alternarColapso.addEventListener('click', function() {
+            if (colapsoPreguntasFrecuentes.classList.contains('hidden')) {
+                colapsoPreguntasFrecuentes.classList.remove('hidden');
+            } else {
+                colapsoPreguntasFrecuentes.classList.add('hidden');
+            }
+        });
+    </script>
+
+
     <form class="grid grid-cols-2 gap-4 sm:grid-cols-1 md:gap-0 mt-4">
         <div class="mt-10 mb-10 text-2xl font-medium">1. <a class="underline" href="{{ route('login') }}">Inicia sesión</a>
             o <a class="underline" href="{{ route('register') }}">registrate</a> si no lo estás.</div>
@@ -70,7 +85,8 @@
         <div>3º Compartenos el link del diseño, asegurate de que esta público o compartelo con nuestro correo
             (quartierz@gmail.com).</div>
 
-        <div class="mt-10 mb-10 text-2xl font-medium">3. Compartenos tu deseño y elige un dia para tomarte las medidas:</div>
+        <div class="mt-10 mb-10 text-2xl font-medium">3. Compartenos tu deseño y elige un dia para tomarte las medidas:
+        </div>
 
         <form action="{{ route('finalizarReserva') }}" method="POST">
             @csrf

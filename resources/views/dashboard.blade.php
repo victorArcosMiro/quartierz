@@ -40,10 +40,12 @@
                                         <th class="p-4 cursor-pointer underline" onclick="showFilterInput('apellido')">
                                             Apellido
                                         </th>
-                                        <th class="p-4 cursor-pointer underline" onclick="showFilterInput('telefono')">Email</th>
+                                        <th class="p-4 cursor-pointer underline" onclick="showFilterInput('telefono')">
+                                            Email</th>
                                         <th class="p-4 cursor-pointer underline" onclick="showFilterInput('telefono')">
                                             Teléfono</th>
-                                        <th class="p-4 cursor-pointer underline" onclick="showDateRangeInput()">Fecha Cita</th>
+                                        <th class="p-4 cursor-pointer underline" onclick="showDateRangeInput()">Fecha
+                                            Cita</th>
 
                                         <th class="p-4 cursor-pointer " onclick="showEstadoFilter()">Estado</th>
                                     </tr>
@@ -137,14 +139,17 @@
 
     ----
 
-    <div id="dateRangeInputContainer" style="display: none;" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div id="dateRangeInputContainer" style="display: none;"
+        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
         <div class="bg-white p-4 rounded-lg">
             <label for="fechaInicio" class="text-black">Fecha Inicio:</label>
             <input id="fechaInicio" type="date" class="border p-2 text-black">
             <label for="fechaFin" class="text-black">Fecha Fin:</label>
             <input id="fechaFin" type="date" class="border p-2 text-black">
-            <button type="button" onclick="filterByDateRange()" class="bg-blue-500 text-white font-bold py-2 px-4 rounded mt-2">Filtrar</button>
-            <button type="button" onclick="hideDateRangeInput()" class="bg-gray-500 text-white font-bold py-2 px-4 rounded mt-2">Cerrar</button>
+            <button type="button" onclick="filterByDateRange()"
+                class="bg-blue-500 text-white font-bold py-2 px-4 rounded mt-2">Filtrar</button>
+            <button type="button" onclick="hideDateRangeInput()"
+                class="bg-gray-500 text-white font-bold py-2 px-4 rounded mt-2">Cerrar</button>
         </div>
     </div>
 

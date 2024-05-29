@@ -17,21 +17,50 @@
                 primera calidad, estamos comprometidos a ofrecer sonrisas únicas y duraderas.
             </div>
         </div>
-
-
     </div>
 
     <div class="bg-black h-96 mt-5 shadow-md overflow-hidden sm:rounded-lg px-10">
+        <div class="flex flex-col h-96">
+            <div class="text-3xl text-center my-10 w-full">
+                ¿Porqué Quartierz?
+            </div>
+            <div class="w-full flex flex-row justify-between">
+                <div class="w-48 h-44 rounded-xl bg-cover bg-center flex items-center justify-center relative"
+                    style="background-image: url('/images/landing/varios-disenos-zoom.jpg');">
+                    <div class="bg-black bg-opacity-70 p-2 w-full h-10 mt-16 absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-100 hover:opacity-0">
+                        <div class="text-white text-xl text-center">Personalización</div>
+                    </div>
+                </div>
+                <div class="w-48 h-44 rounded-xl bg-cover bg-center flex items-center justify-center relative"
+                    style="background-image: url('images/sobre-nosotros/grillz-pulido.jpg');">
+                    <div class="bg-black bg-opacity-70 p-2 w-full h-10 mt-16 absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-100 hover:opacity-0">
+                        <div class="text-white text-xl text-center">Calidad superior</div>
+                    </div>
+                </div>
+                <div class="w-48 h-44 rounded-xl bg-cover bg-center flex items-center justify-center relative"
+                    style="background-image: url('images/custom/fueguito-cera.jpeg');">
+                    <div class="bg-black bg-opacity-70 p-2 w-full h-10 mt-16 absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-100 hover:opacity-0">
+                        <div class="text-white text-xl text-center">Atención al detalle</div>
+                    </div>
+                </div>
+                <div class="w-48 h-44 rounded-xl bg-cover bg-center flex items-center justify-center relative"
+                    style="background-image: url('images/sobre-nosotros/grillz-oro.jpg');">
+                    <div class="bg-black bg-opacity-70 p-2 w-full h-10 mt-16 absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-100 hover:opacity-0">
+                        <div class="text-white text-xl text-center">Compromiso local</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+
+    <div class="bg-black h-96 mt-5 shadow-md overflow-hidden sm:rounded-lg px-10">
         <div class=" flex flex-col h-96">
-
             <div class="flex h-96 items-center">
-
                 <div class="text-center mx-6 hidden sm:block flex-1 w-32 ...">
                     Descubre una amplia variedad de diseños disponibles en nuestra galería. Desde elegantes piezas de
                     cromo hasta exquisitas creaciones en oro de 9 y 18 kilates.
                 </div>
-
                 <div class="text-center text-6xl flex-1 w-64 ...">
                     Explora nuestros diseños.<br>
                     <form action="{{ route('galeria-show') }}">
@@ -40,20 +69,15 @@
                             value="Acceder"></input>
                     </form>
                 </div>
-
-
             </div>
-
         </div>
-
     </div>
 
+
+
     <div class="bg-black h-96 mt-5 shadow-md overflow-hidden sm:rounded-lg px-10">
-
         <div class=" flex flex-col h-96">
-
             <div class="flex  h-96 items-center">
-
                 <div class="text-center text-6xl mx-6 flex-1 w-32 ...">
                     Crea tus grillz <i>Custom.</i><br>
                     <form action="{{ route('custom-show') }}">
@@ -62,18 +86,12 @@
                             value="Acceder"></input>
                     </form>
                 </div>
-
                 <div class="text-center hidden sm:block text-base flex-1 w-64 ...">
                     ¿No ves el diseño para ti? <i>Custom</i> es la sección para las personas que quieran un diseño
                     totalmente personalizado. Accede a la seccion para ver mas informacion de como es el proceso.
-
                 </div>
-
-
             </div>
-
         </div>
-
     </div>
 
 
@@ -81,7 +99,7 @@
     <?php
     /*
 
-CARROUSEL ___ !!NO ES PARA EL PROYECTO!!
+CARROUSEL ___NO ES PARA EL PROYECTO
 
 <div class="h-96 mt-5 backdrop-blur-md  bg-white/10 shadow-md overflow-hidden sm:rounded-lg">
 

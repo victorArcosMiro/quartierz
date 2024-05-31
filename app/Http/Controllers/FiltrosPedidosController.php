@@ -6,28 +6,50 @@ use App\Models\Pedido;
 use App\Models\PedidosPorTelefono;
 use App\Models\PedidoDesignCantidad;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FiltrosPedidosController extends Controller
 {
     public function historialPedidos()
-    {
-        // Obtener pedidos con las relaciones user y estado
+{
+    $user = Auth::user();
+
+    if ($user->is_admin) {
+        // Obtener todos los pedidos si el usuario es administrador
         $pedidos = Pedido::with(['user', 'estado'])
             ->orderBy('id', 'asc')
             ->get();
-        // Devolver la vista con los datos necesarios
-        return view('dashboard', compact('pedidos'));
-    }
-
-    public function historialPedidosTlf()
-    {
-        // Obtener pedidos por teléfono con la relación estado
-        $pedidos_tlf = PedidosPorTelefono::with(['estado'])
+    } else {
+        // Obtener solo los pedidos del usuario autenticado si no es administrador
+        $pedidos = Pedido::with(['user', 'estado'])
+            ->where('user_id', $user->id)
             ->orderBy('id', 'asc')
             ->get();
-        // Devolver la vista con los datos necesarios
-        return view('historial-pedidos-tlf', compact('pedidos_tlf'));
     }
+
+    // Devolver la vista con los datos necesarios
+    return view('dashboard', compact('pedidos'));
+}
+
+public function historialPedidosTlf()
+{
+    $user = Auth::user();
+
+    if (!$user->is_admin) {
+
+        return back();
+    }
+
+    // Obtener todos los pedidos por teléfono si el usuario es administrador
+    $pedidos_tlf = PedidosPorTelefono::with(['estado'])
+        ->orderBy('id', 'asc')
+        ->get();
+
+    // Devolver la vista con los datos necesarios
+    return view('historial-pedidos-tlf', compact('pedidos_tlf'));
+}
+
+
 
     public function mostrarDetallesPedido($id)
     {
@@ -43,6 +65,22 @@ class FiltrosPedidosController extends Controller
         $precioTotal = $detallesPedido->sum('precio');
 
         return view('detalle-pedido', compact('pedido', 'detallesPedido', 'precioTotal'));
+    }
+
+    public function mostrarDetallesPedidoEditar($id)
+    {
+        $pedido = Pedido::with(['user', 'estado'])
+            ->where('id', $id)
+            ->firstOrFail();
+
+        $detallesPedido = PedidoDesignCantidad::with(['design', 'material'])
+            ->where('pedido_id', $id)
+            ->where('pedido_tlf', false)
+            ->get();
+
+        $precioTotal = $detallesPedido->sum('precio');
+
+        return view('detalle-pedido-editar', compact('pedido', 'detallesPedido', 'precioTotal'));
     }
     // Método en el controlador para mostrar los detalles de un pedido por teléfono
     public function mostrarDetallesPedidoTlf($id)
@@ -61,21 +99,7 @@ class FiltrosPedidosController extends Controller
         return view('detalle-pedido-tlf', compact('pedido_tlf', 'detallesPedido', 'precioTotal'));
     }
 
-    public function mostrarDetallesPedidoEditar($id)
-    {
-        $pedido = Pedido::with(['user', 'estado'])
-            ->where('id', $id)
-            ->firstOrFail();
 
-        $detallesPedido = PedidoDesignCantidad::with(['design', 'material'])
-            ->where('pedido_id', $id)
-            ->where('pedido_tlf', false)
-            ->get();
-
-        $precioTotal = $detallesPedido->sum('precio');
-
-        return view('detalle-pedido-editar', compact('pedido', 'detallesPedido', 'precioTotal'));
-    }
 
     public function mostrarDetallesPedidoTlfEditar($id)
     {

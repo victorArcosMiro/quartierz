@@ -3,11 +3,12 @@
 @section('main')
 
 
-
+<div class="text-center text-5xl mb-10">Galería de productos</div>
 
         @include('/includes/filtros')
 
         <div class="product-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 ">
+
 
 
             @foreach ($productsList as $product)

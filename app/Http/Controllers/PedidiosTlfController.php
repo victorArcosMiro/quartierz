@@ -85,20 +85,20 @@ class PedidiosTlfController extends Controller
 
     // Si ya existe un pedido para la misma fecha y hora, retornar con un mensaje de error
     if ($pedidoExistente || $pedidoExistenteTlf) {
-        return back()->with('error', 'Ya hay un pedido registrado para la misma fecha y hora.');
+        return back()->with('error', 'Ya hay un pedido registrado a esa hora!.');
     }
 
     // Verificar si la fecha es anterior a la fecha actual o es el mismo día actual
     $fechaActual = Carbon::now();
     if ($fechaHora->isPast() || $fechaHora->isSameDay($fechaActual)) {
-        return back()->withErrors(['error' => 'La fecha del pedido no puede ser un día pasado o el mismo día actual.']);
+        return back();
     }
 
         // Obtener los IDs de diseño de la sesión
         $designIds = session('design_ids', []);
 
         if (count($designIds) === 0) {
-            return back()->withErrors(['error' => 'No hay diseños en el carrito.']);
+            return back();
         }
 
         // Crear la cita combinando fecha y hora

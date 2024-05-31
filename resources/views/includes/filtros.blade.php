@@ -6,7 +6,7 @@
             </form>
             <form class="w-full text-black flex flex-col" action="{{ route('galeria-filtrado-mp') }}"
                 method="GET">
-                <div class="itemas-center">
+                <div>
                     <label class="text-white"for="price">Precio:</label>
                     <select name="precio" id="price" class="w-full text-black p-2">
                         <option value="0" selected>Selecciona un rango de precio</option>
@@ -15,7 +15,7 @@
                     </select>
                 </div>
 
-                <div class="itemas-center">
+                <div>
                     <label class="text-white" for="material">Material:</label>
                     <select name="material" class="w-full text-black p-2">
                         <option value="0" selected>Selecciona una opción</option>
@@ -25,7 +25,7 @@
                     </select>
                 </div>
 
-                <div class="itemas-center">
+                <div>
                     <label class="text-white" for="material">Piezas:</label>
                     <select name="piezas" class="w-full text-black p-2">
                         <option value="0" selected>Selecciona una opción</option>

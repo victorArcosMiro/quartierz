@@ -5,10 +5,12 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DesignController;
 use App\Http\Controllers\CarritoController;
-use App\Http\Controllers\CalendarioController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\FiltrosPedidosController;
 use App\Http\Controllers\PedidiosTlfController;
+use App\Http\Controllers\UserController;
+
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -86,9 +88,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 
-Route::post('/detalle-pedido-editar/{id}', [FiltrosPedidosController::class,'mostrarDetallesPedidoEditar'])->name('detalle-pedido-editar');
+Route::post('/detalle-pedido/{id}', [PedidosController::class,'mostrarDetallesPedidoEditar'])->name('detalle-pedido-editar');
 
 Route::post('/detalle-pedido-tlf-editar/{id}', [FiltrosPedidosController::class,'mostrarDetallesPedidoTlfEditar'])->name('detalle-pedido-tlf-editar');
+
+Route::delete('/eliminar-detalle/{id}', [PedidosController::class, 'eliminarDetalle'])->name('eliminar-detalle');
 
 
 Route::put('/actualizar-pedido/{id}', [PedidosController::class, 'actualizarPedido'])->name('actualizar-pedido');
@@ -150,8 +154,20 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 /* - RUTAS BREEZE -  - RUTAS BREEZE -  - RUTAS BREEZE -  - RUTAS BREEZE -  - RUTAS BREEZE -  - RUTAS BREEZE -  - RUTAS BREEZE - */
 
-
-/* - RUTAS CALENDARIO -  - RUTAS CALENDARIO -  - RUTAS CALENDARIO -  - RUTAS CALENDARIO -  - RUTAS CALENDARIO - */
 Route::get('/helloworld', function () {
+    if (Auth::check() && Auth::user()->banned) {
+        // Redirigir a una página de "acceso denegado" o similar
+        return view('banned');
+    }
     return view('helloworld');
-})->name('helloworld');
+})->name('banned');
+
+
+
+
+//BAN USERS
+Route::get('/ban-user', [UserController::class, 'index'])->name('user');
+Route::post('/user/ban', [UserController::class, 'ban'])->name('user-ban');
+Route::get('/user/revoke/{id}', [UserController::class, 'userUnban'])->name('user-unban');
+
+

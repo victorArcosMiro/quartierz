@@ -60,15 +60,23 @@
                         <input type="number" class="text-black" id="telefono" name="telefono" required>
                     </div>
                     @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-                   @include('includes.fecha-hora')
+                        <div class="alert alert-danger">
+                            <ul>
+                                @if (Session::has('success'))
+                                <div class="bg-green-500 text-black p-4 rounded mb-6">
+                                    {{ Session::get('success') }}
+                                </div>
+                            @endif
+
+                            @if (Session::has('error'))
+                                <div class="bg-red-500 text-black p-4 rounded mb-6">
+                                    {{ Session::get('error') }}
+                                </div>
+                            @endif
+                            </ul>
+                        </div>
+                    @endif
+                    @include('includes.fecha-hora')
                 </form>
                 @include('includes.js-fecha-hora')
             </div>

@@ -47,7 +47,7 @@
                                         <th class="p-4 cursor-pointer underline" onclick="showDateRangeInput()">Fecha
                                             Cita</th>
 
-                                        <th class="p-4 cursor-pointer " onclick="showEstadoFilter()">Estado</th>
+                                        <th class="p-4">Estado</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -119,26 +119,7 @@
         </div>
     </div>
 
-    <!-- Select de filtro de estado -->
-    <div id="estadoFilterContainer" style="display: none;"
-        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-        <div class="bg-white p-4 rounded-lg">
-            <label for="estadoFilter" class="text-black">Filtrar por Estado:</label>
-            <select id="estadoFilter" class="text-black" onchange="filterByEstado(this.value)">
-                <option value="">Todos</option>
-                <option value="1">Pendiente de cita</option>
-                <option value="2">Fabricando</option>
-                <option value="3">Pendiente de entrega</option>
-                <option value="4">Entregado</option>
-            </select>
-        </div>
-    </div>
-
     <!-- Contenedor de entrada de rango de fechas -->
-
-
-    ----
-
     <div id="dateRangeInputContainer" style="display: none;"
         class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
         <div class="bg-white p-4 rounded-lg">
@@ -166,6 +147,9 @@
         function showDateRangeInput() {
             document.getElementById('dateRangeInputContainer').style.display = 'flex';
         }
+        function hideDateRangeInput() {
+        document.getElementById('dateRangeInputContainer').style.display = 'none';
+    }
 
         function filterByDateRange() {
             const fechaInicio = document.getElementById('fechaInicio').value;
@@ -212,14 +196,21 @@
             form.submit();
         }
 
-        function showEstadoFilter() {
-            document.getElementById('estadoFilterContainer').style.display = 'flex';
-        }
-
         function filterByEstado(estadoId) {
             document.getElementById('opciones').value = 'estado';
             document.getElementById('inputField').value = estadoId;
             document.getElementById('filterForm').submit();
         }
+        function disableSelectsIfNeeded() {
+        const isAdmin = {{ Auth::user()->is_admin ? 'true' : 'false' }};
+        if (!isAdmin) {
+            const selects = document.querySelectorAll('select[name="estado_pedido"]');
+            selects.forEach(select => {
+                select.disabled = true;
+            });
+        }
+    }
+
+    window.onload = disableSelectsIfNeeded;
     </script>
 </x-app-layout>

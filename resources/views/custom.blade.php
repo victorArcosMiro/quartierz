@@ -26,34 +26,62 @@
 
 
     <div class="mb-4 flex flex-col items-center justify-between gap-8 sm:mb-8 md:mb-12 mt-10">
-        <button id="alternarColapso" class="text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-md">Mostrar/Ocultar
+        <button id="alternarColapso1" class="text-white bg-blue-500 px-40 py-2 rounded-md">¿Como creamos tu deseño personalizado?</button>
+
+        <div id="colapsoPreguntasFrecuentes1" class="hidden">
+            <div class="flex flex-col md:flex-row md:items-center md:gap-12">
+                <h2 class="text-2xl font-bold text-white md:text-3xl md:w-1/3">1. Consigue la plantilla.</h2>
+                <p class="max-w-screen-sm text-white md:w-2/3">
+                    Accediendo a este <a href="https://drive.google.com/file/d/1_mK_Wm4Trxab3PffHRq9VQzHOhbUv9yI/view?usp=sharing" class="underline">link</a> descarga la plantilla.
+                </p>
+            </div>
+
+            <div class="flex flex-col md:flex-row md:items-center md:gap-12">
+                <h2 class="text-2xl font-bold textwhite md:text-3xl md:w-1/3">2. Diseña.</h2>
+                <p class="max-w-screen-sm text-white md:w-2/3 mt-2 ">
+                    Con la plantilla podras plasmar tu diseño, elegir materiales y darnos las indicaciones que creas convenientes.
+                </p>
+            </div>
+
+            <div class="flex flex-col md:flex-row md:items-center md:gap-12">
+                <h2 class="text-2xl font-bold text-white md:text-3xl md:w-1/3">3. Sube tu plantilla.</h2>
+                <p class="max-w-screen-sm textwhite md:w-2/3 mt-4">
+                    Sube tu plantilla a cualquier plataforma como Drive, Dropbox o la que mas te guste y compartenos el diseño. En cuanto recibamos tu diseño contactaremos contigo para reservar una fecha y hora para tomarte las medidias de tus dientes.
+                </p>
+            </div>
+
+            <div class="flex flex-col md:flex-row md:items-center md:gap-12">
+                <h2 class="text-2xl font-bold text-white md:text-3xl md:w-1/3">4. Relajate.</h2>
+                <p class="max-w-screen-sm textwhite md:w-2/3 mt-4">
+                    Ahora puedes relajarte, todo esta en nuestras manos. Cuando el pedido este completado podras pasar por la tienda para pasar a recopgerlo.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-4 flex flex-col items-center justify-between gap-8 sm:mb-8 md:mb-12 mt-10">
+        <button id="alternarColapso2" class="text-white bg-blue-500 px-60 py-2 rounded-md">
             Preguntas frecuentes</button>
 
-        <div id="colapsoPreguntasFrecuentes" class="hidden">
+        <div id="colapsoPreguntasFrecuentes2" class="hidden">
             <div class="flex flex-col md:flex-row md:items-center md:gap-12">
                 <h2 class="text-2xl font-bold text-white md:text-3xl md:w-1/3">¿Cómo te muestro mi idea?</h2>
                 <p class="max-w-screen-sm text-white md:w-2/3">
-                    En el formulario situado en la parte inferior de esta sección encontrarás una plantilla descargable para
-                    que
-                    plasmes tu idea y nos la puedas enseñar fácilmente.
+                   Puedes acceder a la plantilla desde el boton que esta enciam de esta seccion.
                 </p>
             </div>
 
             <div class="flex flex-col md:flex-row md:items-center md:gap-12">
                 <h2 class="text-2xl font-bold textwhite md:text-3xl md:w-1/3">¿La plantilla no es suficiente...?</h2>
                 <p class="max-w-screen-sm text-white md:w-2/3 mt-2">
-                    No te preocupes, para nosotros tampoco es suficiente y por eso te ofrecemos un apartado en el formulario
-                    para que nos comentes todos los detalles del diseño. Además podrás contarnos y preguntar cualquier cosa
-                    sobre el producto el día que vengas a consulta para tomarte medidas.
+                    No te preocupes, para nosotros tampoco es suficiente y por eso te ofrecemos que nos contactes para que nos comentes todos los detalles del diseño. Además podrás contarnos y preguntar cualquier cosa sobre el producto el día que vengas a consulta para tomarte medidas.
                 </p>
             </div>
 
             <div class="flex flex-col md:flex-row md:items-center md:gap-12">
                 <h2 class="text-2xl font-bold text-white md:text-3xl md:w-1/3">No estoy seguro del todo...</h2>
                 <p class="max-w-screen-sm textwhite md:w-2/3 mt-2">
-                    Tranquilo, yo tampoco estaba seguro mi primera vez... Ponte en contacto con nosotros para cualquier tipo
-                    de
-                    consulta que tengas ya sea mediante WhatsApp, Instagram, Twitter, correo electrónico...
+                    Tranquilo, yo tampoco estaba seguro mi primera vez... Ponte en contacto con nosotros para cualquier tipo de consulta que tengas ya sea mediante WhatsApp, Instagram, Twitter, correo electrónico...
                 </p>
             </div>
         </div>
@@ -61,15 +89,18 @@
 
 
     <script>
-        const alternarColapso = document.getElementById('alternarColapso');
-        const colapsoPreguntasFrecuentes = document.getElementById('colapsoPreguntasFrecuentes');
+        const alternarColapso1 = document.getElementById('alternarColapso1');
+        const colapsoPreguntasFrecuentes1 = document.getElementById('colapsoPreguntasFrecuentes1');
 
-        alternarColapso.addEventListener('click', function() {
-            if (colapsoPreguntasFrecuentes.classList.contains('hidden')) {
-                colapsoPreguntasFrecuentes.classList.remove('hidden');
-            } else {
-                colapsoPreguntasFrecuentes.classList.add('hidden');
-            }
+        alternarColapso1.addEventListener('click', function() {
+            colapsoPreguntasFrecuentes1.classList.toggle('hidden');
+        });
+
+        const alternarColapso2 = document.getElementById('alternarColapso2');
+        const colapsoPreguntasFrecuentes2 = document.getElementById('colapsoPreguntasFrecuentes2');
+
+        alternarColapso2.addEventListener('click', function() {
+            colapsoPreguntasFrecuentes2.classList.toggle('hidden');
         });
     </script>
 

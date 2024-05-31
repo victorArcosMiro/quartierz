@@ -128,7 +128,7 @@ class CarritoController extends Controller
         // Guardar el carrito actualizado en la sesión
         session()->put('carrito', $carrito);
 
-        return redirect()->back()->with('success', 'Producto eliminado del carrito correctamente.');
+        return redirect()->back();
     }
 
     public function vaciarCarrito()
@@ -155,7 +155,7 @@ class CarritoController extends Controller
 
         // Si ya existe un pedido para la misma fecha y hora, retornar con un mensaje de error
         if ($pedidoExistente || $pedidoExistenteTlf) {
-            return back()->with('error', 'Ya hay un pedido registrado para la misma fecha y hora.');
+            return back()->with('error', 'Hora no disponible!');;
         }
 
         // Obtener el ID del usuario autenticado

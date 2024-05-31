@@ -179,5 +179,6 @@
                 alert('Por favor, seleccione tanto la fecha de inicio como la fecha de fin.');
             }
         }
+
     </script>
 </x-app-layout>

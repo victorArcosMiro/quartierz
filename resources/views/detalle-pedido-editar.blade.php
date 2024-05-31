@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white mt-4 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="text-black text-2xl text-center mt-5">Datos del pedido para modificar</div>
-                <form action="{{ route('actualizar-pedido-tlf', ['id' => $pedido_tlf->id]) }}" method="POST">
+                <form action="{{ route('actualizar-pedido', ['id' => $pedido->id]) }}" method="POST">
                     @csrf
                     @method('PUT')
 
@@ -13,11 +13,11 @@
                                 <div class="text-left">
                                     <p class="mt-4 text-xl"><strong>Datos del cliente</strong></p>
 
-                                    <p class="mt-4"><strong>Nombre: </strong>{{ $pedido_tlf->nombre }} {{ $pedido_tlf->apellidos }}</p>
-                                    <p class="mt-4"><strong>Teléfono:</strong>{{ $pedido_tlf->telefono }}</p>
+                                    <p class="mt-4"><strong>Nombre: </strong>{{ $pedido->user->nombre }} {{ $pedido->user->apellidos }}</p>
+                                    <p class="mt-4"><strong>Teléfono:</strong>{{ $pedido->user->telefono }}</p>
                                     <p class="mt-4 text-xl"><strong>Datos del pedido</strong></p>
-                                    <p class="mt-4"><strong>ID:</strong> {{ $pedido_tlf->id }}</p>
-                                    <p class="mt-4"><strong>Fecha Cita:</strong> <input type="text" name="fecha_cita" value="{{ $pedido_tlf->cita }}"></p>
+                                    <p class="mt-4"><strong>ID:</strong> {{ $pedido->id }}</p>
+                                    <p class="mt-4"><strong>Fecha Cita:</strong> <input type="text" name="fecha_cita" value="{{ $pedido->cita }}"></p>
                                 </div>
                             </div>
                         </div>

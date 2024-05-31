@@ -114,10 +114,22 @@
         <div class="mt-10 relative overflow-x-auto sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right mb-10">
                 <div class="max-w-md mx-auto">
+
+                    @if (Session::has('success'))
+                        <div class="bg-green-500 text-black p-4 rounded mb-6">
+                            {{ Session::get('success') }}
+                        </div>
+                    @endif
+
+                    @if (Session::has('error'))
+                        <div class="bg-red-500 text-black p-4 rounded mb-6">
+                            {{ Session::get('error') }}
+                        </div>
+                    @endif
                     <form action="{{ route('finalizarReserva') }}" method="POST">
                         @csrf
                         @include('includes.fecha-hora')
-                        <input name="precioTotalCarrito" class="hidden" type="text" value="{{$precioTotalCarrito}}">
+                        <input name="precioTotalCarrito" class="hidden" type="text" value="{{ $precioTotalCarrito }}">
                     </form>
                     @include('includes.js-fecha-hora')
                 </div>

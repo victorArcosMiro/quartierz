@@ -121,6 +121,9 @@ Route::post('/guardar-pedido-tlf', [PedidiosTlfController::class, 'guardarPedido
     })->name('pedido-telefono');
 
 
+    Route::get('/asuntos-legales', function () {
+        return view('asuntos-legales');
+    })->name('asuntos-legales');
 
 
 
